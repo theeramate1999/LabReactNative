@@ -4,20 +4,20 @@ import { StyleSheet, Text, View } from 'react-native';
 import Weather from './components/Weather';
 import Constants from 'expo-constants'
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ZipcodeScreen from './sceen/ZipCodeScreen';
+import WeatherScreen from './sceen/WeatherScreen';
+const Stack = createStackNavigator()
+
 export default function App() {
-    const doIt = () => {
-      console.log("Hello form console")
-    }
-  return (
-    <View style={styles.container}>
-      <Weather zipCode = "90110"/>
-      <StatusBar style="auto" />
-    </View>
-  );
+ return(
+    <NavigationContainer>
+      <Stack.Navigator>
+          <Stack.Screen name ="Home" component={ZipcodeScreen} />
+          <Stack.Screen name ="Weather" component = { WeatherScreen } />
+      </Stack.Navigator>
+    </NavigationContainer>
+ );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight
-  },
-});
