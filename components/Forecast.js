@@ -1,13 +1,33 @@
 import React from 'react'
-import { View,Text } from 'react-native'
+import { View,Text,StyleSheet } from 'react-native'
 
 export default function Forecast(props){
     return(
         <View>
-            <Text style= {{color: "red"}}>{props.main}</Text>
-            <Text style={{color: "red"}}>{props.description}</Text>
-            <Text style={{color: "red"}}>{props.temp}</Text>
-            <Text style={{color: "red"}}>°C</Text>
+            <Text style ={styles. headertextstyles}>{props.main}{"\n"}</Text>
+                <Text style ={styles.textstyles} > {props.description}{"\n"}{"\n"}
+                        {props.temp} °C</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    headertextstyles: {
+        color: 'white',
+        fontSize : 32,
+        fontWeight: 'bold',
+        textAlign: 'center'
+
+
+    },
+    textstyles:{
+        fontSize : 22,
+        color: 'white',
+        textAlign :'center',
+        
+
+
+    }
+
+
+})
