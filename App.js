@@ -13,9 +13,9 @@ const Stack = createStackNavigator()
 export default function App() {
  return(
     <NavigationContainer>
-      <Stack.Navigator>
-          <Stack.Screen name ="Home" component={ZipcodeScreen} />
-          <Stack.Screen name ="Weather" component = { WeatherScreen } />
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}  }>
+          <Stack.Screen name ="Home" component={ZipcodeScreen} options={{ headerStyle: { backgroundColor: "black" }  ,headerTintColor: '#FFD472',}}/>
+          <Stack.Screen name ="Weather" component = { WeatherScreen } options = {{headerStyle: { backgroundColor: "#FFD472" }} }/>
       </Stack.Navigator>
     </NavigationContainer>
  );

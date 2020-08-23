@@ -3,11 +3,11 @@ import { Text, ImageBackground , StyleSheet, View } from 'react-native'
 import Forecast from './Forecast'
 
 export default function Weather(props){
-   
     const [forecastInfo, setForecastInfo] = useState({
         main: 'main',
         description: 'description',
-        temp: 0
+        temp: 0,
+        zipCode:0
     })
 
     useEffect(() => {
@@ -19,7 +19,8 @@ export default function Weather(props){
             setForecastInfo({
                 main: json.weather[0].main,
                 description: json.weather[0].description,
-                temp: json.main.temp
+                temp: json.main.temp,
+                zipCode: props.zipCode
              });
         })
         .catch((error) => {
@@ -27,15 +28,13 @@ export default function Weather(props){
                 });
             }
         }, [props.zipCode])
+
     
-    
+  
     return(
-        <ImageBackground source = {require('../back.jpg')} style = {styles.backdrop}>
-            <View style = {styles.viewstyle}>
-            <Text style ={styles.textstyles}>{"\n"}Zip Code is {props.zipCode}{"\n"}</Text>
+            <View >
             <Forecast  {...forecastInfo}/>
             </View>
-        </ImageBackground>
     )
 }
 
@@ -46,16 +45,6 @@ const styles = StyleSheet.create({
         height : '100%',
         
     },
-    textstyles: {
-        textAlign : 'center',
-        color: 'white',
-        fontSize: 22,
-
-    },
-    viewstyle: {
-        width: 800, 
-        height: 300, 
-        backgroundColor: 'black',
-        opacity : .6
-    }
+    
+    
 })
