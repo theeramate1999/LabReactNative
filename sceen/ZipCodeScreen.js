@@ -1,7 +1,6 @@
 import React from 'react'
-import { FlatList, View, Text, StyleSheet, ImageBackground, Image } from 'react-native'
+import { FlatList, View, Text, StyleSheet, ImageBackground,  } from 'react-native'
 import { TouchableHighlight } from 'react-native-gesture-handler'
-import WeatherScreen from './WeatherScreen'
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -19,21 +18,18 @@ const availableZipItems = [
   
 
 const ZipItem = ({place, code, img, navigation}) =>(
+    
     <TouchableHighlight onPress = {() => {
         navigation.navigate('Weather', {zipCode: code})
     }}>
-        
-
-        <View style = {styles.zipItem}>
+        <View style = {styles.zipItem}>           
             <ImageBackground source = {img} style = {styles.backdrop}>
               
                  <Text  style = {styles.zipPlace}>{place}</Text>
-                 <Text style = {styles.zipCode}>{code}</Text>
-                 
              </ImageBackground>  
         </View>
-        
     </TouchableHighlight>
+    
 
 )
 
@@ -53,38 +49,32 @@ export default function ZipcodeScreen(){
 const styles = StyleSheet.create({
     zipItem:{
         flex: 1,
-        flexDirection: 'row',
+        backgroundColor:'blue',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems :'center',
+        
+    
         
     },
     zipPlace: {
-        flex: 0.5,
+        flex: 0.2,
         fontSize:36,
-        padding:1,
+        padding:0.5,
+        opacity:0.6,
         backgroundColor:'black',
-        color: 'white',
-        textAlign: 'left',
-        opacity: .5,
+        color: '#FFD472',
+        textAlign: 'center',
         textShadowColor: 'black',
-        textShadowRadius: 0.4
+        textShadowRadius: 1
         
         
     },
-    zipCode : {
-        flex: 1,       
-        fontSize:36,
-        color: 'white',
-        flexDirection: 'row',
-        textAlign: 'right',
-        textAlignVertical: 'bottom',
-        textShadowColor: 'black',
-        textShadowRadius: 0.4
-    },
+
     backdrop: {
-        alignItems : 'stretch',
-        width : '100%',
+        width :'100%',
         height : 300,
-        borderWidth: 4,
-        borderColor: "#20232a",
+        borderColor: 'white',
         borderRadius: 6,
          
     },
