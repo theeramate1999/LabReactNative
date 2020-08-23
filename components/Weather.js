@@ -7,7 +7,11 @@ export default function Weather(props){
         main: 'main',
         description: 'description',
         temp: 0,
-        zipCode:0
+        temp_min:0,
+        temp_max:0,
+        pressure:0,
+        zipCode:0,
+
     })
 
     useEffect(() => {
@@ -20,6 +24,9 @@ export default function Weather(props){
                 main: json.weather[0].main,
                 description: json.weather[0].description,
                 temp: json.main.temp,
+                temp_min:json.main.temp_min,
+                temp_max:json.main.temp_max,
+                pressure:json.main.pressure,
                 zipCode: props.zipCode
              });
         })

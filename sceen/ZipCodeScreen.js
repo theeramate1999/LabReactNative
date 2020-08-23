@@ -26,6 +26,7 @@ const ZipItem = ({place, code, img, navigation}) =>(
 
         <View style = {styles.zipItem}>
             <ImageBackground source = {img} style = {styles.backdrop}>
+              
                  <Text  style = {styles.zipPlace}>{place}</Text>
                  <Text style = {styles.zipCode}>{code}</Text>
                  
@@ -56,9 +57,15 @@ const styles = StyleSheet.create({
         
     },
     zipPlace: {
-        flex: 1,
+        flex: 0.5,
         fontSize:36,
+        padding:1,
+        backgroundColor:'black',
         color: 'white',
+        textAlign: 'left',
+        opacity: .5,
+        textShadowColor: 'black',
+        textShadowRadius: 0.4
         
         
     },
@@ -69,6 +76,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         textAlign: 'right',
         textAlignVertical: 'bottom',
+        textShadowColor: 'black',
+        textShadowRadius: 0.4
     },
     backdrop: {
         alignItems : 'stretch',

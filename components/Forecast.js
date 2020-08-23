@@ -9,6 +9,10 @@ export default function Forecast(props){
                       break;
         case 'Clouds' :img =require('../clouds.jpg')
                       break;
+        case 'Sunny': img = require('../sunny.jpg')
+                      break;
+        case 'Thunderstorm' : img = require('../thunderstorm.jpg')
+                    break;
         
     }
     console.log(`Image = ${img}`)
@@ -19,7 +23,9 @@ export default function Forecast(props){
                 <Text style ={styles.textstyles}>{"\n"}Zip Code is {props.zipCode}{"\n"}</Text>
                 <Text style ={styles. headertextstyles}>{props.main}{"\n"}</Text>
                 <Text style ={styles.textstyles} > {props.description}{"\n"}{"\n"}
-                        {props.temp} °C</Text>
+                                {props.temp} °C</Text> 
+                        <Text style ={styles.tempstyles} > {"\n"} Min:{props.temp_min} °C   :   Max: {props.temp_max} °C</Text>
+                        <Text style ={styles.pressurestyles} >  Pressure : {props.pressure}</Text>
             </View>
         </ImageBackground>
     )
@@ -31,8 +37,6 @@ const styles = StyleSheet.create({
         fontSize : 32,
         fontWeight: 'bold',
         textAlign: 'center'
-
-
     },
     textstyles:{
         fontSize : 22,
@@ -56,8 +60,21 @@ const styles = StyleSheet.create({
     },
     viewstyle: {
         width: 800, 
-        height: 300, 
+        height: 400, 
         backgroundColor: 'black',
         opacity : .6
-    }
+    },
+    tempstyles: {
+
+        textAlign : 'center',
+        color: 'white',
+        fontSize: 16,
+
+    },
+    pressurestyles:{
+        textAlign : 'center',
+        color: 'white',
+        fontSize: 16,
+        textAlignVertical: 'bottom',
+    },
 })
