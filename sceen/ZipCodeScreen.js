@@ -1,7 +1,11 @@
 import React from 'react'
-import { FlatList, View, Text, StyleSheet, ImageBackground,  } from 'react-native'
+import { FlatList, View, Text, StyleSheet, ImageBackground, SafeAreaView  } from 'react-native'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
+import Carousel from 'react-native-snap-carousel';
+import { scrollInterpolator, animatedStyles } from '../option/animations';
+
+
 
 
 const availableZipItems = [
@@ -15,34 +19,56 @@ const availableZipItems = [
     { place: 'Suratthani', code: '84000' ,img:require('../suratthani.jpg')},
    ]
    
-  
+   
 
 const ZipItem = ({place, code, img, navigation}) =>(
     
     <TouchableHighlight onPress = {() => {
         navigation.navigate('Weather', {zipCode: code})
-    }}>
-        <View style = {styles.zipItem}>           
-            <ImageBackground source = {img} style = {styles.backdrop}>
-              
-                 <Text  style = {styles.zipPlace}>{place}</Text>
-             </ImageBackground>  
+    }}> 
+    
+        <View style={styles.box} >           
+            <ImageBackground source = {img} style = {styles.backdrop}/>
+            <Text style={styles.zipPlace}>{place}</Text>
+            <Text style={styles.zipCode}>{code}</Text>
+                
+               
         </View>
     </TouchableHighlight>
     
-
 )
 
 
 export default function ZipcodeScreen(){
+    
+    
+    
+
+
     const navigation = useNavigation()
-    return (
-        <FlatList
-            data = {availableZipItems}
-            keyExtractor = {item => item.code}
-            renderItem = {({item}) => <ZipItem {...item} navigation ={navigation}/>}
-            />
+    return (  
+        <SafeAreaView style={{flex: 1, 
+            backgroundColor:'#7D0000',
+            paddingTop: 50,            
+            }}>
+            <Text style={styles.location}>Location</Text>
+            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center',}}>
+                <Carousel
+                    layout={'stack'} layoutCardOffset={`18`}
+                    scrollInterpolator={scrollInterpolator}
+                    slideInterpolatedStyle={animatedStyles}
+                    data = {availableZipItems}
+                    keyExtractor = {item => item.code}
+                    renderItem = {({item}) => <ZipItem {...item} navigation ={navigation}/>}
+                    hasParallaxImages={true}
+                    useScrollView={true}
+                    sliderWidth={300}
+                    itemWidth={380}
+                />
+            </View>
+            </SafeAreaView>
     )
+        
 
 } 
 
@@ -57,16 +83,27 @@ const styles = StyleSheet.create({
     
         
     },
-    zipPlace: {
-        flex: 0.2,
-        fontSize:36,
-        padding:0.5,
-        opacity:0.6,
+    zipCode:{
         backgroundColor:'black',
-        color: '#FFD472',
-        textAlign: 'center',
-        textShadowColor: 'black',
-        textShadowRadius: 1
+        height: -30,
+        paddingTop: -30,
+        paddingLeft: 25,
+        paddingBottom: 20,
+        marginLeft: 0,
+        marginRight: 0, 
+        fontSize: 25, 
+        color: 'white',
+        },
+
+    zipPlace: {
+        backgroundColor:'red',
+        height: 70,
+        paddingLeft: 25,
+        marginLeft: 0,
+        marginRight: 0, 
+        color: 'white',
+        fontSize: 50, 
+        fontWeight: 'bold'
         
         
     },
@@ -78,4 +115,46 @@ const styles = StyleSheet.create({
         borderRadius: 6,
          
     },
+    imgs:{
+        paddingTop: 130,
+        paddingLeft: 25,
+        marginLeft: 50,
+        marginRight: 0, 
+        width:270,
+        height:200,
+    },
+    background: {
+        backgroundColor: '#FF6666',
+        marginLeft: 20,
+        marginRight: 20,
+        margin: 3,
+        borderRadius: 50,
+    },
+    location:{
+        padding:30,
+        textAlign:'center',
+        fontSize:70,
+        color:'white',
+        fontWeight: 'bold',
+       
+    },
+    box:{
+        
+            backgroundColor: '#000',
+            borderRadius: 4,
+            borderWidth: 0.5,
+            borderColor: '#000',
+            padding: 10,
+            margin: 20,
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 7,
+            },
+            shadowOpacity: 0.41,
+            shadowRadius: 9.11,
+            elevation: 14,
+           
+    },
+
 })

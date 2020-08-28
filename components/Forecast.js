@@ -1,9 +1,11 @@
 import React from 'react'
 import { View,Text,StyleSheet, ImageBackground } from 'react-native'
 
+
+
+
 export default function Forecast(props){
     let img = ""
-    console.log(`main  = ${props.main}`)
     switch(props.main){
         case 'Rain' : img =require('../rain.jpg')
                       break;
@@ -13,9 +15,13 @@ export default function Forecast(props){
                       break;
         case 'Thunderstorm' : img = require('../thunderstorm.jpg')
                     break;
+        case  'Mist' :img = require('../mist.jpg')
+                    break;
+        case  'Fog' :img = require('../fog.jpg')
+                    break;
+        default : img = require('../back.jpg')
         
     }
-    console.log(`Image = ${img}`)
 
     return(
         <ImageBackground source ={img} style ={styles.backdrop}>
@@ -77,4 +83,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlignVertical: 'bottom',
     },
+    
 })

@@ -1,10 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Weather from './components/Weather';
-import Constants from 'expo-constants'
 
-import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import { NavigationContainer ,StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ZipcodeScreen from './sceen/ZipCodeScreen';
 import WeatherScreen from './sceen/WeatherScreen';
